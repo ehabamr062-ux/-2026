@@ -552,7 +552,7 @@
 
         function updateClock() {
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit', hour12:false});
+            const timeStr = now.toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit', hour12:true});
             const dateStr = now.toLocaleDateString('ar-EG', {weekday:'long', day:'numeric', month:'long'});
             if(document.getElementById('loginTime')) document.getElementById('loginTime').innerText = timeStr;
             if(document.getElementById('loginDate')) document.getElementById('loginDate').innerText = dateStr;

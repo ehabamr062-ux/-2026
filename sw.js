@@ -27,6 +27,12 @@ self.addEventListener('activate', (event) => {
 
 // جلب الملفات من الكاش عند عدم وجود إنترنت
 self.addEventListener('fetch', (event) => {
+  // تجاهل أي طلبات ليست من نوع GET (مثل طلبات تسجيل الدخول)
+  if (event.request.method !== 'GET') return;
+  
+  // تجاهل الروابط الخارجية (مثل الـ Firebase) عشان ما يحصلش بطء
+  if (!event.request.url.startsWith(self.location.origin)) return;
+
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);
